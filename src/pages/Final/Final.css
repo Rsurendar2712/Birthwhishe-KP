@@ -1,0 +1,8 @@
+.final-page { min-height: 100vh; display: grid; place-items: center; padding: 40px 20px; background: radial-gradient(circle at 50% 0%, #ff9ebd 0%, #8e5bd6 55%, #2a1650 100%); }
+.final-card { width: min(480px, 100%); text-align: center; }
+.final-photo { width: min(300px, 80%); aspect-ratio: 4/5; object-fit: cover; border: 10px solid #fff; border-radius: 6px; box-shadow: 0 30px 50px rgba(0,0,0,.45); transform: rotate(-3deg); animation: bob 5s ease-in-out infinite; }
+@keyframes bob { 50% { transform: rotate(-1deg) translateY(-10px); } }
+.final-sentence { font-family: "Fraunces", serif; font-weight: 400; font-style: italic; font-size: clamp(1.3rem, 3.5vw, 1.8rem); line-height: 1.35; margin: 30px 0 22px; }
+.final-input { width: 100%; padding: 14px 16px; font: inherit; color: #fff; border-radius: 16px; resize: vertical; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.4); backdrop-filter: blur(8px); }
+.final-input::placeholder { color: rgba(255,255,255,.7); }
+.final-send { margin-top: 16px; min-width: 160px; background: linear-gradient(135deg, #25d366, #128c7e); box-shadow: 0 10px 30px rgba(37, 211, 102, .45); }

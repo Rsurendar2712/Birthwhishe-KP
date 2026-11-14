@@ -1,0 +1,226 @@
+/* ---------- Page Layout & Responsiveness ---------- */
+.gallery-page { 
+  --scroll: 0; 
+  min-height: 100vh; 
+  padding: 70px 20px 80px; 
+  background: linear-gradient(180deg, #2b1d14, #3d2a1c 40%, #231710); 
+  overflow-x: hidden; 
+  perspective: 1400px;
+}
+
+.gallery-title { 
+  text-align: center; 
+  font-family: "Fraunces", serif; 
+  font-style: italic; 
+  font-size: clamp(1.8rem, 4vw, 2.8rem); 
+  margin: 0 0 60px; 
+  color: #f6e3c5; 
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.gallery-list { 
+  max-width: 980px; 
+  margin: 0 auto; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 100px; 
+  transform-style: preserve-3d;
+}
+
+/* ---------- 3D Zig-Zag Rows (Preserved on Mobile) ---------- */
+.g-row { 
+  display: flex; 
+  align-items: center; 
+  gap: 48px; 
+  transform: translateY(calc(var(--scroll) * var(--depth) * -1px)); 
+  transform-style: preserve-3d;
+}
+
+.g-row.right { 
+  flex-direction: row-reverse; 
+}
+
+.g-row.left { 
+  margin-right: auto; 
+} 
+
+.g-row.right { 
+  margin-left: auto; 
+}
+
+.float { 
+  animation: floaty 6s ease-in-out infinite; 
+}
+
+.g-row:nth-child(even) .float { 
+  animation-delay: -3s; 
+}
+
+@keyframes floaty { 
+  50% { transform: translateY(-16px) rotateZ(.8deg); } 
+}
+
+/* ---------- Ultra-Clear HD Vintage Polaroid Frame with 3D Depth ---------- */
+.vintage { 
+  position: relative; 
+  margin: 0; 
+  width: 270px; 
+  padding: 14px 14px 50px; 
+  background: linear-gradient(145deg, #fcf8f2, #ece4d4); 
+  transform: rotate(var(--tilt)); 
+  transform-style: preserve-3d; 
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease; 
+  box-shadow: 
+    0 35px 50px rgba(0, 0, 0, 0.55), 
+    0 10px 20px rgba(0, 0, 0, 0.35),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.15); 
+}
+
+.vintage:hover {
+  transform: rotate(0deg) scale(1.04) translateZ(20px);
+  box-shadow: 
+    0 45px 65px rgba(0, 0, 0, 0.65), 
+    0 15px 25px rgba(0, 0, 0, 0.4),
+    inset 0 1px 3px rgba(255, 255, 255, 1);
+}
+
+/* HD Photos (Removed Sepia & Blur Filters for Crystal Clarity) */
+.vintage img { 
+  display: block; 
+  width: 100%; 
+  aspect-ratio: 4/5; 
+  object-fit: cover; 
+  border-radius: 4px;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.25);
+  /* Filters removed so local HD photos remain perfectly clear and sharp */
+  filter: none; 
+}
+
+/* Subtle Realistic Photo Gloss Highlight */
+.vintage::after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  height: 50%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, transparent 60%);
+  pointer-events: none;
+  border-radius: 4px 4px 0 0;
+}
+
+/* Optional Grain overlay reduced to bare minimum for realism */
+.grain { 
+  position: absolute; 
+  inset: 14px 14px 50px; 
+  pointer-events: none; 
+  mix-blend-mode: overlay; 
+  opacity: 0.12;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .3  0 0 0 0 .2  0 0 0 0 .1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); 
+}
+
+.g-caption { 
+  flex: 1; 
+  font-family: "Caveat", cursive; 
+  font-size: clamp(1.5rem, 3vw, 2.1rem); 
+  line-height: 1.25; 
+  color: #f6e3c5; 
+  max-width: 340px; 
+  margin: 0; 
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.g-row.right .g-caption { 
+  text-align: right; 
+}
+
+/* ---------- 3D Glowing Next Button & Bottom Container ---------- */
+.gallery-bottom { 
+  display: flex; 
+  justify-content: center; 
+  margin-top: 100px; 
+  z-index: 20;
+  position: relative;
+}
+
+/* Apply this class to your Next button inside gallery-bottom */
+.gallery-bottom .btn, 
+.gallery-bottom button {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 209, 102, 0.85), rgba(255, 159, 67, 0.85));
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  padding: 16px 40px;
+  border-radius: 18px;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #3b1805;
+  cursor: pointer;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 
+    0 14px 35px rgba(255, 170, 60, 0.45),
+    inset 0 2px 2px rgba(255, 255, 255, 0.9),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: buttonNeonGlow 3.5s infinite ease-in-out;
+}
+
+.gallery-bottom .btn:hover, 
+.gallery-bottom button:hover {
+  transform: translateY(-3px) scale(1.03);
+  background: linear-gradient(135deg, rgba(255, 220, 120, 0.95), rgba(255, 170, 80, 0.95));
+  border-color: #ffffff;
+  box-shadow: 
+    0 20px 48px rgba(255, 170, 60, 0.65),
+    0 0 25px rgba(255, 209, 102, 0.5),
+    inset 0 2px 3px rgba(255, 255, 255, 1),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-bottom .btn:active, 
+.gallery-bottom button:active {
+  transform: translateY(1px);
+}
+
+@keyframes buttonNeonGlow {
+  0%, 100% {
+    box-shadow: 
+      0 14px 35px rgba(255, 170, 60, 0.35),
+      inset 0 2px 2px rgba(255, 255, 255, 0.8),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.25);
+  }
+  50% {
+    box-shadow: 
+      0 16px 42px rgba(255, 190, 90, 0.6),
+      0 0 20px rgba(255, 209, 102, 0.4),
+      inset 0 2px 2px rgba(255, 255, 255, 0.95),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* ---------- Mobile Responsiveness (Zig-Zag Preserved) ---------- */
+@media (max-width: 640px) {
+  .gallery-list {
+    gap: 60px;
+  }
+  
+  /* Zig-zag direction and layout maintained on mobile */
+  .g-row {
+    gap: 16px;
+  }
+  
+  .vintage { 
+    width: 210px; 
+    padding: 10px 10px 38px;
+  }
+  
+  .g-caption {
+    font-size: 1.3rem;
+    max-width: 220px;
+  }
+
+  .gallery-bottom {
+    margin-top: 60px;
+  }
+}

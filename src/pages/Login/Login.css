@@ -1,0 +1,224 @@
+/* Login Page Layout & Responsive Viewport */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 16px 40px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.login-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 10, 30, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Glass Container with Frosted Layer */
+.glass-card {
+  position: relative; 
+  z-index: 1; 
+  width: min(420px, 100%); 
+  padding: 44px 30px 36px; 
+  border-radius: 32px;
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.05)),
+    var(--card-bg, #1e1b4b) center / cover;
+  backdrop-filter: blur(20px) saturate(180%); 
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 
+    0 35px 70px rgba(0, 0, 0, 0.5), 
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.glass-card::before { 
+  content: ""; 
+  position: absolute; 
+  inset: 0; 
+  border-radius: inherit; 
+  background: rgba(20, 12, 40, 0.4); 
+  z-index: 0; 
+}
+
+.glass-card > * { 
+  position: relative; 
+  z-index: 1; 
+}
+
+/* Cat Positioning - Perfectly anchored to the top right corner */
+.glass-card > .cat-wrap {
+  position: absolute;
+  top: -72px;
+  right: -15px;
+  z-index: 10;
+  width: 140px;
+  height: 140px;
+  pointer-events: none;
+  filter: drop-shadow(0 12px 16px rgba(0, 0, 0, 0.4));
+}
+
+/* Typography & Content */
+.login-title { 
+  font-family: "Fraunces", serif; 
+  font-size: 1.85rem; 
+  font-weight: 700;
+  line-height: 1.2; 
+  margin: 0 0 6px; 
+  max-width: 80%; 
+  
+  /* 3D Colorful Gradient Text Effect */
+  background: linear-gradient(135deg, #fff5f8 20%, #ff85a1 60%, #b892ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  /* Multi-layered 3D Depth Shadows & Glow */
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5))
+          drop-shadow(0 2px 20px rgba(244, 114, 182, 0.4));
+  
+  /* Extra crisp rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+.login-sub { 
+  margin: 0 0 24px; 
+  color: rgba(255, 255, 255, 0.75); 
+  font-size: 0.92rem;
+}
+
+.field { 
+  display: block; 
+  margin-bottom: 18px; 
+}
+
+.field span { 
+  display: block; 
+  font-size: 0.82rem; 
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 6px; 
+  color: rgba(255, 255, 255, 0.85); 
+}
+
+.field input {
+  width: 100%; 
+  padding: 14px 18px; 
+  font-size: 1rem; 
+  color: #fff; 
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.12); 
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.field input::placeholder { 
+  color: rgba(255, 255, 255, 0.45); 
+}
+
+.field input:focus {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(244, 114, 182, 0.7);
+  box-shadow: 
+    0 0 0 4px rgba(244, 114, 182, 0.2),
+    inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.login-error { 
+  color: #fca5a5; 
+  font-size: 0.88rem; 
+  margin: 0 0 12px; 
+}
+
+/* Highly Creative, Glowing, Glassy Login Button */
+.login-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 15px 24px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+  border-radius: 16px;
+  cursor: pointer;
+  background: linear-gradient(135deg, rgba(244, 114, 182, 0.5), rgba(168, 85, 247, 0.5));
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 
+    0 10px 30px rgba(168, 85, 247, 0.35),
+    inset 0 1px 1px rgba(255, 255, 255, 0.7),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: buttonGlowPulse 4s infinite ease-in-out;
+}
+
+.login-btn:hover {
+  background: linear-gradient(135deg, rgba(244, 114, 182, 0.75), rgba(168, 85, 247, 0.75));
+  border-color: rgba(255, 255, 255, 0.8);
+  transform: translateY(-3px);
+  box-shadow: 
+    0 18px 40px rgba(168, 85, 247, 0.55),
+    0 0 20px rgba(244, 114, 182, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.login-btn:active {
+  transform: translateY(1px);
+  box-shadow: 
+    0 6px 15px rgba(168, 85, 247, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+/* Breathing Neon Glow Animation for the Button */
+@keyframes buttonGlowPulse {
+  0%, 100% {
+    box-shadow: 
+      0 10px 30px rgba(168, 85, 247, 0.3),
+      inset 0 1px 1px rgba(255, 255, 255, 0.6),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    box-shadow: 
+      0 12px 35px rgba(244, 114, 182, 0.45),
+      0 0 15px rgba(168, 85, 247, 0.3),
+      inset 0 1px 1px rgba(255, 255, 255, 0.8),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 480px) {
+  .login-page {
+    padding: 60px 12px 20px;
+  }
+  
+  .glass-card {
+    padding: 36px 20px 28px;
+    border-radius: 24px;
+  }
+  
+  .glass-card > .cat-wrap {
+    width: 110px;
+    height: 110px;
+    top: -58px;
+    right: -10px;
+  }
+  
+  .login-title {
+    font-size: 1.5rem;
+    max-width: 85%;
+  }
+}

@@ -1,0 +1,372 @@
+/* ---------- Page Layout & Responsiveness ---------- */
+.candle-page {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  background: #000;
+  transition: background 1.4s ease;
+  padding: 40px 16px;
+  box-sizing: border-box;
+}
+
+.candle-page.lit { 
+  background: radial-gradient(circle at 50% 45%, #22120a 0%, #0d0604 55%, #000000 85%); 
+}
+
+.candle-page.blown { 
+  background: radial-gradient(circle at 50% 40%, #ffe9f1 0%, #ffc2d8 45%, #7c3aed 100%); 
+}
+
+/* Bottom Bar & 3D Glowing Buttons */
+.bottom-bar { 
+  margin-top: 36px;
+  display: flex; 
+  justify-content: center; 
+  z-index: 10;
+}
+
+.glow-btn {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 209, 102, 0.9), rgba(255, 159, 67, 0.9));
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 16px 36px;
+  border-radius: 18px;
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #3b1805;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 
+    0 12px 35px rgba(255, 170, 60, 0.5), 
+    inset 0 2px 2px rgba(255, 255, 255, 0.8),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: buttonPulse 3s infinite ease-in-out;
+}
+
+.glow-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 
+    0 18px 45px rgba(255, 170, 60, 0.7),
+    0 0 20px rgba(255, 209, 102, 0.5),
+    inset 0 2px 3px rgba(255, 255, 255, 0.9),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.glow-btn:active {
+  transform: translateY(1px);
+}
+
+@keyframes buttonPulse {
+  0%, 100% {
+    box-shadow: 0 12px 35px rgba(255, 170, 60, 0.4), inset 0 2px 2px rgba(255, 255, 255, 0.8);
+  }
+  50% {
+    box-shadow: 0 15px 42px rgba(255, 190, 90, 0.65), 0 0 15px rgba(255, 209, 102, 0.4), inset 0 2px 2px rgba(255, 255, 255, 0.9);
+  }
+}
+
+/* ---------- Cake Scene & Lighting ---------- */
+.cake-scene { 
+  position: relative; 
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  z-index: 3;
+}
+
+.flame-glow { 
+  position: absolute; 
+  top: -80px; 
+  width: 480px; 
+  height: 480px; 
+  max-width: 95vw; 
+  border-radius: 50%; 
+  background: radial-gradient(circle, rgba(255,170,60,.45), rgba(255,120,20,.15) 40%, transparent 70%); 
+  animation: glowPulse 1.6s ease-in-out infinite; 
+  pointer-events: none; 
+  z-index: 1;
+}
+
+@keyframes glowPulse { 
+  50% { transform: scale(1.08); opacity: .85; } 
+}
+
+/* ---------- Typing Text Placed Above the Cake ---------- */
+.cake-header-text {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 0 16px;
+  max-width: 440px;
+  min-height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cake-text { 
+  font-family: "Caveat", cursive; 
+  font-size: 2rem; 
+  line-height: 1.25; 
+  color: #fff1f2; 
+  font-weight: 700; 
+  text-shadow: 
+    0 2px 16px rgba(255, 105, 180, 0.8), 
+    0 1px 4px rgba(0, 0, 0, 0.9); 
+  margin: 0;
+}
+
+.caret { 
+  display: inline-block; 
+  width: 2.5px; 
+  height: 1.1em; 
+  background: #f43f5e; 
+  margin-left: 4px; 
+  vertical-align: -2px; 
+  animation: blink .8s steps(1) infinite; 
+}
+
+@keyframes blink { 
+  50% { opacity: 0; } 
+}
+
+/* ---------- Realistic 3D Gourmet Cake ---------- */
+.cake { 
+  position: relative; 
+  width: min(320px, 85vw); 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  filter: drop-shadow(0 30px 40px rgba(0,0,0,.65)); 
+}
+
+.tier { 
+  position: relative; 
+  border-radius: 20px 20px 14px 14px; 
+  overflow: visible; 
+  background: linear-gradient(90deg, #5b2f19 0%, #8a4826 30%, #5b2f19 70%, #442211 100%); 
+  box-shadow: 
+    inset 0 -18px 22px rgba(0,0,0,0.55), 
+    inset 0 6px 12px rgba(255,255,255,0.15),
+    0 10px 20px rgba(0,0,0,0.35); 
+}
+
+.tier.top { 
+  width: 76%; 
+  height: 95px; 
+  z-index: 3; 
+}
+
+.tier.bottom { 
+  width: 100%; 
+  height: 110px; 
+  margin-top: -8px; 
+  z-index: 2;
+}
+
+/* Realistic Glossy Icing with Drips */
+.icing { 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  height: 42px; 
+  border-radius: 20px 20px 0 0;
+  background: radial-gradient(circle at 18px 100%, #ffffff 14px, transparent 15px) 0 0 / 36px 100% repeat-x, linear-gradient(#fffdfa, #f7efe6) 0 0 / 100% 70% no-repeat; 
+  box-shadow: inset 0 -3px 6px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.18);
+  z-index: 2;
+}
+
+/* Gourmet Cherries */
+.cherry { 
+  position: absolute; 
+  top: -8px; 
+  width: 20px; 
+  height: 20px; 
+  border-radius: 50%; 
+  background: radial-gradient(circle at 35% 30%, #ff8a9a, #c1121f 60%, #50050c); 
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5), inset -2px -2px 4px rgba(0,0,0,0.3); 
+  z-index: 4; 
+}
+
+.c1 { left: 16%; } 
+.c2 { left: 47%; } 
+.c3 { right: 16%; }
+
+/* Colorful Sprinkles Pattern */
+.sprinkles { 
+  position: absolute; 
+  inset: 45px 0 0; 
+  background-image: 
+    radial-gradient(circle, #ffd166 2.5px, transparent 3.5px), 
+    radial-gradient(circle, #4cc9f0 2.5px, transparent 3.5px), 
+    radial-gradient(circle, #ff6a88 2.5px, transparent 3.5px),
+    radial-gradient(circle, #06d6a0 2px, transparent 3px); 
+  background-size: 42px 34px, 56px 48px, 48px 40px, 36px 28px; 
+  background-position: 4px 8px, 22px 18px, 32px 4px, 12px 24px; 
+  opacity: .9; 
+  z-index: 2;
+}
+
+/* Elegant Cake Plate */
+.plate { 
+  width: 115%; 
+  height: 24px; 
+  margin-top: -2px; 
+  border-radius: 50%; 
+  background: radial-gradient(ellipse at 50% 30%, #ffffff 0%, #e2e2ec 65%, #9494ab 100%); 
+  box-shadow: 0 16px 28px rgba(0,0,0,0.65), inset 0 2px 4px rgba(255,255,255,0.8); 
+  z-index: 1;
+}
+
+/* ---------- 3D Realistic Candle & Flame ---------- */
+.candle { 
+  position: absolute; 
+  top: -68px; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  width: 12px; 
+  z-index: 6; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+}
+
+.candle-body { 
+  width: 12px; 
+  height: 52px; 
+  border-radius: 4px; 
+  background: repeating-linear-gradient(135deg, #fff 0 7px, #ff6a88 7px 14px); 
+  box-shadow: inset -2px 0 4px rgba(0,0,0,0.35), 0 3px 6px rgba(0,0,0,0.25); 
+}
+
+.wick { 
+  width: 2px; 
+  height: 8px; 
+  background: #111; 
+}
+
+.flame { 
+  position: relative; 
+  width: 20px; 
+  height: 36px; 
+  margin-bottom: -2px; 
+  transform-origin: 50% 100%; 
+  animation: flicker 0.18s infinite alternate; 
+}
+
+.flame::before { 
+  content: ""; 
+  position: absolute; 
+  inset: 0; 
+  border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%; 
+  background: radial-gradient(ellipse at 50% 80%, #fff6b0 0%, #ffb734 45%, #ff6a00 100%); 
+  box-shadow: 0 0 22px 8px rgba(255,160,40,.8), 0 0 55px 18px rgba(255,110,10,.5); 
+}
+
+.flame-core { 
+  position: absolute; 
+  left: 6px; 
+  bottom: 3px; 
+  width: 8px; 
+  height: 16px; 
+  border-radius: 50%; 
+  background: #5fa8ff; 
+  opacity: .65; 
+  filter: blur(1px); 
+}
+
+@keyframes flicker { 
+  0% { transform: scale(1, 1) skewX(-3deg); } 
+  50% { transform: scale(.94, 1.08) skewX(2deg); } 
+  100% { transform: scale(1.04, .95) skewX(-1deg); } 
+}
+
+/* ---------- Realistic Smoke Animation ---------- */
+.smoke { 
+  position: absolute; 
+  top: -8px; 
+  left: 50%; 
+}
+
+.smoke i { 
+  position: absolute; 
+  width: 14px; 
+  height: 14px; 
+  border-radius: 50%; 
+  background: rgba(150,150,160,.55); 
+  filter: blur(5px); 
+  animation: smokeUp 3s ease-out forwards; 
+}
+
+.smoke i:nth-child(2) { 
+  animation-delay: .35s; 
+  left: 6px; 
+} 
+
+.smoke i:nth-child(3) { 
+  animation-delay: .7s; 
+  left: -6px; 
+}
+
+@keyframes smokeUp { 
+  0% { transform: translate(0,0) scale(.5); opacity: 0; } 
+  20% { opacity: .85; } 
+  100% { transform: translate(14px,-100px) scale(3.2); opacity: 0; } 
+}
+
+/* ---------- Floating Ribbons ---------- */
+.ribbon { 
+  position: absolute; 
+  top: 0; 
+  width: 80px; 
+  height: 70%; 
+  display: flex; 
+  justify-content: space-around; 
+  z-index: 2; 
+  pointer-events: none;
+}
+
+.ribbon.left { left: max(3vw, 8px); } 
+.ribbon.right { right: max(3vw, 8px); }
+
+.ribbon span { 
+  width: 12px; 
+  height: 0; 
+  border-radius: 0 0 6px 6px; 
+  transform-origin: top; 
+  background: linear-gradient(180deg, #ff6a88, #ffd166); 
+  animation: ribbonDrop 1.1s cubic-bezier(.2,.9,.3,1.2) forwards, sway 3s ease-in-out infinite; 
+  animation-delay: calc(var(--i) * .18s), calc(1.2s + var(--i) * .2s); 
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25); 
+}
+
+.ribbon span:nth-child(2) { background: linear-gradient(180deg, #4cc9f0, #b388ff); } 
+.ribbon span:nth-child(3) { background: linear-gradient(180deg, #06d6a0, #ffd166); }
+
+@keyframes ribbonDrop { 
+  to { height: var(--len); } 
+}
+
+.ribbon span:nth-child(1) { --len: 50vh; } 
+.ribbon span:nth-child(2) { --len: 65vh; } 
+.ribbon span:nth-child(3) { --len: 44vh; }
+
+@keyframes sway { 
+  50% { transform: rotate(4deg); } 
+}
+
+/* Mobile Responsive Adaptations */
+@media (max-width: 520px) {
+  .ribbon { width: 40px; } 
+  .cake-text { font-size: 1.6rem; }
+  .cake { width: min(280px, 85vw); }
+  .glow-btn { padding: 14px 28px; font-size: 0.95rem; }
+}
